@@ -18,6 +18,24 @@ void insert_sort()
 	}
 }
 
+//选择排序
+void selsort(int l[])
+{
+	int i, j, mini, tem; 
+	for (i = 0; i < LEN; i++)
+	{
+		mini = i;
+		for (j = i+1; j < LEN; j++)
+		{
+			if (l[mini] > l[j]) 
+				mini = j;
+		}
+		tem = l[i];
+		l[i] = l[mini];
+		l[mini] = tem;
+	}
+}
+
 //归并排序
 void merge(int start, int mid, int end)
 {
@@ -85,7 +103,7 @@ void quick_sort(int a[], int left, int right)
 int main()
 {
 	int i;
-	quick_sort(a, 0, LEN-1);
+	selsort(a);
 	for (i = 0; i < LEN; ++i)
 		printf("%d\t", a[i]);
 	return 0;
