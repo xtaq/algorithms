@@ -30,9 +30,11 @@ void selsort(int l[])
 			if (l[mini] > l[j]) 
 				mini = j;
 		}
-		tem = l[i];
-		l[i] = l[mini];
-		l[mini] = tem;
+		if (mini != i) { 
+			l[i] = l[i] ^ l[mini];
+			l[mini] = l[i] ^ l[mini];
+			l[i] = l[i] ^ l[mini];
+		} 
 	}
 }
 
