@@ -44,7 +44,7 @@ void merge(int start, int mid, int end)
 	int n1 = mid - start + 1;
 	int n2 = end - mid;
 	int left[n1], right[n2];
-
+    int i, j, k;
 
 	for (i = 0; i < n1; ++i)
 		left[i] = a[start+i];
@@ -102,10 +102,34 @@ void quick_sort(int a[], int left, int right)
 	}
 }
 
+void quicksort2(int a[], int left, int right)
+{
+    int key, mi;
+    if (left < right)
+    {
+        key = a[left];
+        mi = left;
+        for (int k = left + 1; k <= right; ++k)
+        {
+            if (a[k] < key)
+            {
+                int temp = a[k];
+                a[k] = a[++mi];
+                a[mi] = temp;
+            }
+        }
+        int temp = a[left];
+        a[left] = a[mi];
+        a[mi] = temp;
+        quicksort2(a, left, mi-1);
+        quicksort2(a, mi+1, right);
+    }
+}
+
 int main()
 {
 	int i;
-	quick_sort(a, 0, LEN - 1);
+	quicksort2(a, 0, LEN - 1);
 	for (i = 0; i < LEN; ++i)
 		printf("%d\t", a[i]);
 	return 0;
